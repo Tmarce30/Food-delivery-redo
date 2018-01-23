@@ -8,4 +8,12 @@ class Employee
     @password = attributes[:password]
     @role = attributes[:role]
   end
+
+  def manager?
+    @role == "manager"
+  end
+
+  def delivery_guy?
+    @role == "delivery_guy"
+  end
 end
