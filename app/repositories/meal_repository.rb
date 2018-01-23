@@ -2,7 +2,7 @@ class MealRepository
   def initialize(csv_file)
     @meals = []
     @csv_file = csv_file
-    @nex_id = 1
+    @next_id = 1
     load_csv if File.exist?(@csv_file)
   end
 
@@ -10,7 +10,23 @@ class MealRepository
     @meals
   end
 
+  def add(meal)
+    meal.id = @next_id
+    @meals << meal
+    @next_id += 1
+    save_csv
+  end
+
   private
+
+  def save_csv
+    CSV.open(@csv_file, 'w') do |csv|
+      csv << ["id", "name", "price"]
+      @meals.each do |meal|
+        csv << [meal.id, meal.name, meal.price]
+      end
+    end
+  end
 
   def load_csv
     csv_options = { headers: :first_row, header_converters: :symbol }
