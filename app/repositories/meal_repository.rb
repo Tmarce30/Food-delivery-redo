@@ -1,3 +1,6 @@
+require 'csv'
+require_relative '../models/meal.rb'
+
 class MealRepository
   def initialize(csv_file)
     @meals = []
