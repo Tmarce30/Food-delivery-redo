@@ -6,6 +6,10 @@ class MealRepository
     load_csv if File.exist?(@csv_file)
   end
 
+  def all
+    @meals
+  end
+
   private
 
   def load_csv
