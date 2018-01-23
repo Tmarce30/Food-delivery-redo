@@ -6,6 +6,10 @@ class CustomerRepository
     load_csv if File.exist?(@csv_file)
   end
 
+  def all
+    @customers
+  end
+
   private
 
   def load_csv
