@@ -1,3 +1,6 @@
+require 'csv'
+require_relative '../models/employee.rb'
+
 class EmployeeRepository
   def initialize(csv_file)
     @employees = []
