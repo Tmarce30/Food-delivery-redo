@@ -10,6 +10,10 @@ class EmployeeRepository
     @employees.select { |employee| employee.role == "delivery_guy" }
   end
 
+  def find(id)
+    @employees.find { |employee| id == employee.id }
+  end
+
   private
 
   def load_csv
