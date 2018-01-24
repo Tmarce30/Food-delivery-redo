@@ -18,4 +18,10 @@ class OrdersController
     orders = @order_repository.undelivered_orders
     @view.display(orders)
   end
+
+  def add
+    attributes = @view.ask_user_for_order_infos(@meal_repository, @customer_repository, @employee_repository)
+    order = Order.new(attributes)
+    @order_repository.add(order)
+  end
 end
