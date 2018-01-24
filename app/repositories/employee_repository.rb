@@ -6,6 +6,10 @@ class EmployeeRepository
     load_csv if File.exist?(@csv_file)
   end
 
+  def all_delivery_guys
+    @employees.select { |employee| employee.role == "delivery_guy" }
+  end
+
   private
 
   def load_csv
