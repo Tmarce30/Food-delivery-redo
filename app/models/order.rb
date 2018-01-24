@@ -5,4 +5,8 @@ class Order
     @id = attributes[:id]
     @delivered = attributes[:delivered] || false
   end
+
+  def delivered?
+    @delivered
+  end
 end
