@@ -1,8 +1,3 @@
-require_relative '../models/order.rb'
-require_relative '../repositories/order_repository.rb'
-require_relative '../repositories/meal_repository.rb'
-require_relative '../repositories/employee_repository.rb'
-require_relative '../repositories/customer_repository.rb'
 require_relative '../views/view_order.rb'
 
 class OrdersController
@@ -20,10 +15,15 @@ class OrdersController
   end
 
   def add
-    attributes = @view.ask_user_for_order_infos(@meal_repository, @customer_repository, @employee_repository)
-    meal = @meal_repository.find(attributes[:meal])
-    customer = @customer_repository.find(attributes[:customer])
-    employee = @employee_repository.find(attributes[:employee])
+    meal_id = @view.ask_user_for_input('meal id', true)
+    meal = @meal_repository.find(meal_id)
+
+    customer_id = @view.ask_user_for_input('customer id', true)
+    customer = @customer_repository.find(customer_id)
+
+    employee_id = @view.ask_user_for_input('employee id', true)
+    employee = @employee_repository.find(employee_id)
+
     order = Order.new(meal: meal, customer: customer, employee: employee)
     @order_repository.add(order)
   end

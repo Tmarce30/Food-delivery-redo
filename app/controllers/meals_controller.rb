@@ -12,8 +12,8 @@ class MealsController
   end
 
   def add
-    name = ask_user_for_input("the meal's name")
-    price = ask_user_for_input("the meal's price", true)
+    name = @view.ask_user_for_input("the meal's name")
+    price = @view.ask_user_for_input("the meal's price", true)
     meal = Meal.new(name: name, price: price)
     @meal_repository.add(meal)
   end
