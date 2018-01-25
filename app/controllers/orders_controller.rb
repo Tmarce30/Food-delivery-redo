@@ -33,4 +33,10 @@ class OrdersController
     my_orders = orders.select { |order| order.employee.username == employee.username}
     @view.display(my_orders)
   end
+
+  def mark_as_delivered(employee)
+    order = @view.ask_user_for_id
+    @order_repository.find(order).deliver!
+    @order_repository.save_csv
+  end
 end

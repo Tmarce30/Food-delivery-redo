@@ -18,4 +18,10 @@ class ViewOrder
     attributes[:employee] = gets.chomp.to_i
     return attributes
   end
+
+  def ask_user_for_id
+    puts "Select delivered order"
+    order = gets.chomp.to_i
+    return order
+  end
 end

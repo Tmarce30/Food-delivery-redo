@@ -16,14 +16,16 @@ class OrderRepository
     @orders.select { |order| order.delivered == false }
   end
 
+  def find(id)
+    @orders.find { |order| order.id == id }
+  end
+
   def add(order)
     order.id = @next_id
     @orders << order
     @next_id += 1
     save_csv
   end
-
-  private
 
   def save_csv
     CSV.open(@csv_file, 'w') do |csv|
@@ -33,6 +35,8 @@ class OrderRepository
       end
     end
   end
+
+  private
 
   def load_csv
     csv_options = { headers: :first_row, header_converters: :symbol }
