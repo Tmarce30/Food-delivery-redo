@@ -1,13 +1,7 @@
 require 'csv'
 require_relative '../models/meal.rb'
 
-class MealRepository
-  def initialize(csv_file)
-    @meals = []
-    @csv_file = csv_file
-    @next_id = 1
-    load_csv if File.exist?(@csv_file)
-  end
+class MealRepository < BaseRepository
 
   def all
     @meals

@@ -1,15 +1,13 @@
 require 'csv'
 require_relative '../models/order.rb'
 
-class OrderRepository
+class OrderRepository < BaseRepository
   def initialize(csv_file, meal_repository, employee_repository, customer_repository)
-    @orders = []
-    @csv_file = csv_file
     @meal_repository = meal_repository
     @employee_repository = employee_repository
     @customer_repository = customer_repository
-    @next_id = 1
-    load_csv if File.exist?(@csv_file)
+
+    super(csv_file)
   end
 
   def undelivered_orders

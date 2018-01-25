@@ -1,13 +1,7 @@
 require 'csv'
 require_relative '../models/employee.rb'
 
-class EmployeeRepository
-  def initialize(csv_file)
-    @employees = []
-    @csv_file = csv_file
-    @next_id = 1
-    load_csv if File.exist?(@csv_file)
-  end
+class EmployeeRepository < BaseRepository
 
   def all_delivery_guys
     @employees.select { |employee| employee.role == "delivery_guy" }

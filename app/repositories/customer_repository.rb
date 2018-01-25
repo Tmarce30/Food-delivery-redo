@@ -1,13 +1,7 @@
 require 'csv'
 require_relative '../models/customer.rb'
 
-class CustomerRepository
-  def initialize(csv_file)
-    @customers = []
-    @csv_file = csv_file
-    @next_id = 1
-    load_csv if File.exist?(@csv_file)
-  end
+class CustomerRepository < BaseRepository
 
   def all
     @customers
