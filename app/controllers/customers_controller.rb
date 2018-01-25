@@ -1,5 +1,3 @@
-require_relative '../models/customer.rb'
-require_relative '../repositories/customer_repository.rb'
 require_relative '../views/view_customer.rb'
 
 class CustomersController
@@ -14,8 +12,9 @@ class CustomersController
   end
 
   def add
-    attributes = @view.ask_user_for_name_and_address
-    customer = Customer.new(attributes)
+    name = ask_for_input("the customer name")
+    address = ask_for_input("the customer address")
+    customer = Customer.new(name: name, address: address)
     @customer_repository.add(customer)
   end
 end
