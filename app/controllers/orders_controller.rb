@@ -27,4 +27,10 @@ class OrdersController
     order = Order.new(meal: meal, customer: customer, employee: employee)
     @order_repository.add(order)
   end
+
+  def list_my_orders(employee)
+    orders = @order_repository.undelivered_orders
+    my_orders = orders.select { |order| order.employee.username == employee.username}
+    @view.display(my_orders)
+  end
 end
