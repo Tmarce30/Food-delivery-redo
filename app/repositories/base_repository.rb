@@ -18,4 +18,8 @@ class BaseRepository
   def all
     @elements
   end
+
+  def find(id)
+    @elements.find { |element| id == element.id }
+  end
 end

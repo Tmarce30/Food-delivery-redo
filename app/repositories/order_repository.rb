@@ -14,10 +14,6 @@ class OrderRepository < BaseRepository
     @orders.select { |order| order.delivered == false }
   end
 
-  def find(id)
-    @orders.find { |order| order.id == id }
-  end
-
   def save_csv
     CSV.open(@csv_file, 'w') do |csv|
       csv << ["id", "delivered", "meal_id", "employee_id", "customer_id"]
