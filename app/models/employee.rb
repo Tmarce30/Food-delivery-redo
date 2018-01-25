@@ -16,4 +16,12 @@ class Employee
   def delivery_guy?
     @role == "delivery_guy"
   end
+
+  def self.headers
+    %w(id username password role)
+  end
+
+  def csv_row
+    [@id, @username, @password, @role]
+  end
 end

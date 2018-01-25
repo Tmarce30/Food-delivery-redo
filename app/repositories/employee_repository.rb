@@ -5,11 +5,11 @@ class EmployeeRepository < BaseRepository
   undef_method :add
 
   def all_delivery_guys
-    @employees.select { |employee| employee.delivery_guy? }
+    @elements.select { |element| element.delivery_guy? }
   end
 
   def find_by_username(username)
-    @employees.find { |employee| username == employee.username}
+    @elements.find { |element| username == element.username}
   end
 
   def build_element(row)

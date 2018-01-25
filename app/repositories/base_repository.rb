@@ -25,6 +25,15 @@ class BaseRepository
 
   private
 
+  def save_csv
+    CSV.open(@csv_file, 'w') do |csv|
+      csv << @elements.first.class.headers
+      @elements.each do |element|
+        csv << element.csv_row
+      end
+    end
+  end
+
   def load_csv
     csv_options = { headers: :first_row, header_converters: :symbol }
     CSV.foreach(@csv_file, csv_options) do |row|

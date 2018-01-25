@@ -11,16 +11,7 @@ class OrderRepository < BaseRepository
   end
 
   def undelivered_orders
-    @orders.select { |order| order.delivered == false }
-  end
-
-  def save_csv
-    CSV.open(@csv_file, 'w') do |csv|
-      csv << ["id", "delivered", "meal_id", "employee_id", "customer_id"]
-      @orders.each do |order|
-        csv << [order.id, order.delivered, order.meal.id, order.employee.id, order.customer.id]
-      end
-    end
+    @elements.select { |element| element.delivered == false }
   end
 
   def build_element(row)

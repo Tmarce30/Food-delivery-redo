@@ -17,4 +17,12 @@ class Order
   def deliver!
     @delivered = true
   end
+
+  def self.headers
+    %w(id delivered meal employee customer)
+  end
+
+  def csv_row
+    [@id, @delivered, @meal, @employee, @customer]
+  end
 end
