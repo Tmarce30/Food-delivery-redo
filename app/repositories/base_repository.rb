@@ -14,4 +14,8 @@ class BaseRepository
     @next_id += 1
     save_csv
   end
+
+  def all
+    @elements
+  end
 end

@@ -3,10 +3,6 @@ require_relative '../models/meal.rb'
 
 class MealRepository < BaseRepository
 
-  def all
-    @meals
-  end
-
   def find(id)
     @meals.find { |meal| id == meal.id }
   end

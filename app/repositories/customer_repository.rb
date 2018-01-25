@@ -3,10 +3,6 @@ require_relative '../models/customer.rb'
 
 class CustomerRepository < BaseRepository
 
-  def all
-    @customers
-  end
-
   def find(id)
     @customers.find { |customer| id == customer.id }
   end
