@@ -14,14 +14,10 @@ class CustomerRepository < BaseRepository
     end
   end
 
-  def load_csv
-    csv_options = { headers: :first_row, header_converters: :symbol }
-    CSV.foreach(@csv_file, csv_options) do |row|
-      row[:id] = row[:id].to_i
-      row[:name] = row[:name]
-      row[:address] = row[:address]
-      @customers << Customer.new(row)
-    end
-    @next_id = @customers.empty? ? 1 : @customers.last.id + 1
+  def build_element(row)
+    row[:id] = row[:id].to_i
+    row[:name] = row[:name]
+    row[:address] = row[:address]
+    Customer.new(row)
   end
 end

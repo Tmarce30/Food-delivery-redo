@@ -22,4 +22,14 @@ class BaseRepository
   def find(id)
     @elements.find { |element| id == element.id }
   end
+
+  private
+
+  def load_csv
+    csv_options = { headers: :first_row, header_converters: :symbol }
+    CSV.foreach(@csv_file, csv_options) do |row|
+      @elements << build_element(row)
+    end
+    @next_id = @elements.empty? ? 1 : @elements.last.id + 1
+  end
 end

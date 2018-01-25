@@ -23,18 +23,12 @@ class OrderRepository < BaseRepository
     end
   end
 
-  private
-
-  def load_csv
-    csv_options = { headers: :first_row, header_converters: :symbol }
-    CSV.foreach(@csv_file, csv_options) do |row|
-      row[:id] = row[:id].to_i
-      row[:delivered] = row[:delivered] == "true"
-      row[:meal] = @meal_repository.find(row[:meal_id].to_i)
-      row[:employee] = @employee_repository.find(row[:employee_id].to_i)
-      row[:customer] = @customer_repository.find(row[:customer_id].to_i)
-      @orders << Order.new(row)
-    end
-    @next_id = @orders.empty? ? 1 : @orders.last.id + 1
+  def build_element(row)
+    row[:id] = row[:id].to_i
+    row[:delivered] = row[:delivered] == "true"
+    row[:meal] = @meal_repository.find(row[:meal_id].to_i)
+    row[:employee] = @employee_repository.find(row[:employee_id].to_i)
+    row[:customer] = @customer_repository.find(row[:customer_id].to_i)
+    Order.new(row)
   end
 end
