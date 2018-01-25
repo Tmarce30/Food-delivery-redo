@@ -15,4 +15,8 @@ class Meal
   def csv_row
     [@id, @name, @price]
   end
+
+  def to_s
+    "#{@id}. #{@name} | #{@price}$"
+  end
 end

@@ -1,10 +1,6 @@
-class ViewMeal
-  def display(meals)
-    meals.each do |meal|
-      puts "#{meal.id} - #{meal.name} - #{meal.price}"
-    end
-  end
+require_relative 'base_view.rb'
 
+class ViewMeal < BaseView
   def ask_user_for_infos
     attributes = {}
     puts "What's the meal name ?"
