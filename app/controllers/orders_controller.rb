@@ -35,8 +35,8 @@ class OrdersController
   end
 
   def mark_as_delivered(employee)
-    order = @view.ask_user_for_id
-    @order_repository.find(order).deliver!
+    order_id = @view.ask_user_for_input('order id', true)
+    @order_repository.find(order_id).deliver!
     @order_repository.save
   end
 end
