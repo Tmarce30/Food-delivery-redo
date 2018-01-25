@@ -21,7 +21,10 @@ class OrdersController
 
   def add
     attributes = @view.ask_user_for_order_infos(@meal_repository, @customer_repository, @employee_repository)
-    order = Order.new(attributes)
+    meal = @meal_repository.find(attributes[:meal])
+    customer = @customer_repository.find(attributes[:customer])
+    employee = @employee_repository.find(attributes[:employee])
+    order = Order.new(meal: meal, customer: customer, employee: employee)
     @order_repository.add(order)
   end
 end
