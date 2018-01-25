@@ -5,7 +5,7 @@ class BaseView
     end
   end
 
-  def ask_for_input(label, is_num = false)
+  def ask_user_for_input(label, is_num = false)
     puts "Please enter #{label}"
     response = gets.chomp
     if is_num

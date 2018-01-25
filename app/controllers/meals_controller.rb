@@ -1,5 +1,3 @@
-require_relative '../models/meal.rb'
-require_relative '../repositories/meal_repository.rb'
 require_relative '../views/view_meal.rb'
 
 class MealsController
@@ -14,8 +12,9 @@ class MealsController
   end
 
   def add
-    attributes = @view.ask_user_for_infos
-    meal = Meal.new(attributes)
+    name = ask_user_for_input("the meal's name")
+    price = ask_user_for_input("the meal's price", true)
+    meal = Meal.new(name: name, price: price)
     @meal_repository.add(meal)
   end
 end
