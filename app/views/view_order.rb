@@ -1,10 +1,6 @@
-class ViewOrder
-  def display(orders)
-    orders.each do |order|
-      puts "#{order.id} - #{order.employee.username} | #{order.customer.name} - #{order.meal.name} - #{order.customer.address}"
-    end
-  end
+require_relative 'base_view.rb'
 
+class ViewOrder < BaseView
   def ask_user_for_order_infos(meals, customers, employees)
     attributes = {}
     puts "Which customer made the order ?"

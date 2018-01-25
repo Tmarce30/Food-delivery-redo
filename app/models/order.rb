@@ -25,4 +25,8 @@ class Order
   def csv_row
     [@id, @delivered, @meal.id, @employee.id, @customer.id]
   end
+
+  def to_s
+    "#{@id} - #{@employee.username} | #{@customer.name} - #{@meal.name} - #{@customer.address}"
+  end
 end
