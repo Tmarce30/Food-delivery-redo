@@ -22,4 +22,8 @@ class OrderRepository < BaseRepository
     row[:customer] = @customer_repository.find(row[:customer_id].to_i)
     Order.new(row)
   end
+
+  def save
+    save_csv
+  end
 end

@@ -37,6 +37,6 @@ class OrdersController
   def mark_as_delivered(employee)
     order = @view.ask_user_for_id
     @order_repository.find(order).deliver!
-    @order_repository.save_csv
+    @order_repository.save
   end
 end

@@ -19,10 +19,10 @@ class Order
   end
 
   def self.headers
-    %w(id delivered meal employee customer)
+    %w(id delivered meal_id employee_id customer_id)
   end
 
   def csv_row
-    [@id, @delivered, @meal, @employee, @customer]
+    [@id, @delivered, @meal.id, @employee.id, @customer.id]
   end
 end
