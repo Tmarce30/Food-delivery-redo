@@ -15,4 +15,8 @@ class Customer
   def csv_row
     [@id, @name, @address]
   end
+
+  def to_s
+    "#{@id}. #{@name} | #{@address}"
+  end
 end

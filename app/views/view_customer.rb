@@ -1,10 +1,6 @@
-class ViewCustomer
-  def display(customers)
-    customers.each do |customer|
-      puts "#{customer.id} - #{customer.name} - #{customer.address}"
-    end
-  end
+require_relative 'base_view.rb'
 
+class ViewCustomer < BaseView
   def ask_user_for_name_and_address
     attributes = {}
     puts "What is the name of the customer ?"
