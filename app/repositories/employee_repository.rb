@@ -1,7 +1,8 @@
-require 'csv'
+require_relative 'base_repository'
 require_relative '../models/employee.rb'
 
 class EmployeeRepository < BaseRepository
+  undef_method :add
 
   def all_delivery_guys
     @employees.select { |employee| employee.role == "delivery_guy" }

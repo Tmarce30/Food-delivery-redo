@@ -1,17 +1,10 @@
-require 'csv'
+require_relative 'base_repository'
 require_relative '../models/customer.rb'
 
 class CustomerRepository < BaseRepository
 
   def all
     @customers
-  end
-
-  def add(customer)
-    customer.id = @next_id
-    @customers << customer
-    @next_id += 1
-    save_csv
   end
 
   def find(id)

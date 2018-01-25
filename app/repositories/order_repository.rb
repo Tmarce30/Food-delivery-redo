@@ -1,4 +1,4 @@
-require 'csv'
+require_relative 'base_repository'
 require_relative '../models/order.rb'
 
 class OrderRepository < BaseRepository
@@ -16,13 +16,6 @@ class OrderRepository < BaseRepository
 
   def find(id)
     @orders.find { |order| order.id == id }
-  end
-
-  def add(order)
-    order.id = @next_id
-    @orders << order
-    @next_id += 1
-    save_csv
   end
 
   def save_csv

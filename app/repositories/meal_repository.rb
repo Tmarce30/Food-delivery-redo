@@ -1,17 +1,10 @@
-require 'csv'
+require_relative 'base_repository'
 require_relative '../models/meal.rb'
 
 class MealRepository < BaseRepository
 
   def all
     @meals
-  end
-
-  def add(meal)
-    meal.id = @next_id
-    @meals << meal
-    @next_id += 1
-    save_csv
   end
 
   def find(id)
