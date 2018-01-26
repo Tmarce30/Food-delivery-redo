@@ -33,4 +33,19 @@ class Router
     puts "7 - Exit"
     puts "---------------------------"
   end
+
+  def route_action(action)
+    case action
+    when 1 @meals_controller.list
+    when 2 @meals_controller.add
+    when 3 @customers_controller.list
+    when 4 @customers_controller.add
+    when 5 @orders_controller.list
+    when 6 @orders_controller.add
+    when 7 stop
+  end
+
+  def stop
+    @running = false
+  end
 end
