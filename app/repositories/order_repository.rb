@@ -11,7 +11,7 @@ class OrderRepository < BaseRepository
   end
 
   def undelivered_orders
-    @elements.select { |element| element.delivered == false }
+    @elements.select { |element| element.delivered? }
   end
 
   def build_element(row)
