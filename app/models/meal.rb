@@ -17,6 +17,6 @@ class Meal
   end
 
   def to_s
-    "#{@id}. #{@name} | #{@price}$"
+    "#{@id}. #{@name} | #{@price.to_s}$"
   end
 end
