@@ -20,3 +20,7 @@ order_repository = OrderRepository.new(order_csv_file, meal_repository, employee
 customers_controller = CustomersController.new(customer_repository)
 meals_controller = MealsController.new(meal_repository)
 orders_controller = OrdersController.new(meal_repository, employee_repository, customer_repository, order_repository)
+
+router = Router.new(customers_controller, meals_controller, orders_controller)
+
+router.run
