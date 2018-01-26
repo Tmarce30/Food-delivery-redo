@@ -6,6 +6,7 @@ require_relative 'app/repositories/order_repository.rb'
 require_relative 'app/controllers/customers_controller.rb'
 require_relative 'app/controllers/meals_controller.rb'
 require_relative 'app/controllers/orders_controller.rb'
+require_relative 'router.rb'
 
 customer_csv_file = File.join(__dir__, 'data/customers.csv')
 employee_csv_file = File.join(__dir__, 'data/employees.csv')
