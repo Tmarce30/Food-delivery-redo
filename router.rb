@@ -30,7 +30,8 @@ class Router
     puts "4 - Add a customer"
     puts "5 - List orders"
     puts "6 - Take an order"
-    puts "7 - Exit"
+    puts "7 - Mark order as delivered"
+    puts "8 - Exit"
     puts "---------------------------"
   end
 
@@ -40,9 +41,12 @@ class Router
       when 2 then @meals_controller.add
       when 3 then @customers_controller.list
       when 4 then @customers_controller.add
-      when 5 then @orders_controller.list
+      when 5 then @orders_controller.list_undelivered_orders
       when 6 then @orders_controller.add
-      when 7 then stop
+      when 7 then @orders_controller.mark_as_delivered
+      when 8 then stop
+      else
+        puts 'Enter a number between 1 and 8 !'
     end
   end
 
