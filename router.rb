@@ -12,17 +12,20 @@ class Router
   def run
     puts '* Welcome to your delivery app *'
     puts "--------------------------------"
-    employee = @sessions_controller.log_in
     while @running
-      if employee.manager?
-        display_manager_tasks
-        action = gets.chomp.to_i
-        route_manager_action(action)
-      elsif employee.delivery_guy?
-        display_delivery_guy_tasks
-        action = gets.chomp.to_i
-        route_employee_action(action, employee)
+      @employee = @sessions_controller.log_in
+      while @running && @employee
+        if @employee.manager?
+          display_manager_tasks
+          action = gets.chomp.to_i
+          route_manager_action(action)
+        elsif @employee.delivery_guy?
+          display_delivery_guy_tasks
+          action = gets.chomp.to_i
+          route_employee_action(action)
+        end
       end
+      print `clear`
     end
   end
 
@@ -36,7 +39,8 @@ class Router
     puts "3 - List all your customers"
     puts "4 - Add a customer"
     puts "5 - List orders"
-    puts "6 - Exit"
+    puts "6 - Sign out"
+    puts "7 - Exit"
     puts "---------------------------"
   end
 
@@ -47,7 +51,8 @@ class Router
       when 3 then @customers_controller.list
       when 4 then @customers_controller.add
       when 5 then @orders_controller.list_undelivered_orders
-      when 6 then stop
+      when 6 then @employee = nil
+      when 7 then stop
       else
         puts 'Enter a number between 1 and 6 !'
     end
@@ -59,16 +64,18 @@ class Router
     puts "1 - Take an order"
     puts "2 - List my orders"
     puts "3 - Mark order as delivered"
-    puts "4 - Exit"
+    puts "4 - Sign out"
+    puts "5 - Exit"
     puts "---------------------------"
   end
 
-  def route_employee_action(action, employee)
+  def route_employee_action(action)
     case action
       when 1 then @orders_controller.add
-      when 2 then @orders_controller.list_my_orders(employee)
-      when 3 then @orders_controller.mark_as_delivered(employee)
-      when 4 then stop
+      when 2 then @orders_controller.list_my_orders(@employee)
+      when 3 then @orders_controller.mark_as_delivered(@employee)
+      when 4 then @employee = nil
+      when 5 then stop
       else
         puts 'Enter a number between 1 and 4 !'
     end
@@ -77,5 +84,6 @@ class Router
 
   def stop
     @running = false
+    @employee = nil
   end
 end
