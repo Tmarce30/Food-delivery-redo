@@ -1,9 +1,10 @@
 # TODO: implement the router of your app.
 class Router
-  def initialize(customers_controller, meals_controller, orders_controller)
+  def initialize(customers_controller, meals_controller, orders_controller, sessions_controller)
     @customers_controller = customers_controller
     @meals_controller = meals_controller
     @orders_controller = orders_controller
+    @sessions_controller = sessions_controller
 
     @running = true
   end
@@ -12,6 +13,7 @@ class Router
     puts '* Welcome to your delivery app *'
     puts "--------------------------------"
     while @running
+      @sessions_controller.log_in
 
       display_tasks
       action = gets.chomp.to_i
