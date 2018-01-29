@@ -16,7 +16,7 @@ class SessionsController
       @view.logged_in
     else
       @view.wrong_credentials
-      sign_in
+      log_in
     end
   end
 end

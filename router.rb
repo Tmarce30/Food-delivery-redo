@@ -12,9 +12,8 @@ class Router
   def run
     puts '* Welcome to your delivery app *'
     puts "--------------------------------"
+    @sessions_controller.log_in
     while @running
-      @sessions_controller.log_in
-
       display_tasks
       action = gets.chomp.to_i
       route_action(action)
@@ -23,7 +22,7 @@ class Router
 
   private
 
-  def display_tasks
+  def display_manager_tasks
     puts "What do you want to do ?"
     puts ""
     puts "1 - Display the menu"
@@ -31,26 +30,44 @@ class Router
     puts "3 - List all your customers"
     puts "4 - Add a customer"
     puts "5 - List orders"
-    puts "6 - Take an order"
-    puts "7 - Mark order as delivered"
-    puts "8 - Exit"
+    puts "6 - Exit"
     puts "---------------------------"
   end
 
-  def route_action(action)
+  def route_manager_action(action)
     case action
       when 1 then @meals_controller.list
       when 2 then @meals_controller.add
       when 3 then @customers_controller.list
       when 4 then @customers_controller.add
       when 5 then @orders_controller.list_undelivered_orders
-      when 6 then @orders_controller.add
-      when 7 then @orders_controller.mark_as_delivered
-      when 8 then stop
+      when 6 then stop
       else
-        puts 'Enter a number between 1 and 8 !'
+        puts 'Enter a number between 1 and 6 !'
     end
   end
+
+  def display_delivery_guy_action
+    puts "What do you want to do ?"
+    puts ""
+    puts "1 - Take an order"
+    puts "2 - List my orders"
+    puts "3 - Mark order as delivered"
+    puts "4 - Exit"
+    puts "---------------------------"
+  end
+
+  def route_manager_action(action)
+    case action
+      when 1 then @orders_controller.add
+      when 2 then @orders_controller.list_my_orders(employee)
+      when 3 then @orders_controller.mark_as_delivered(employee)
+      when 4 then stop
+      else
+        puts 'Enter a number between 1 and 4 !'
+    end
+  end
+
 
   def stop
     @running = false
