@@ -14,6 +14,7 @@ class SessionsController
 
     if employee && employee.password == password
       @view.logged_in
+      return employee
     else
       @view.wrong_credentials
       log_in

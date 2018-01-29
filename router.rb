@@ -12,11 +12,17 @@ class Router
   def run
     puts '* Welcome to your delivery app *'
     puts "--------------------------------"
-    @sessions_controller.log_in
+    employee = @sessions_controller.log_in
     while @running
-      display_tasks
-      action = gets.chomp.to_i
-      route_action(action)
+      if employee.manager?
+        display_manager_tasks
+        action = gets.chomp.to_i
+        route_manager_action(action)
+      elsif employee.delivery_guy?
+        display_delivery_guy_tasks
+        action = gets.chomp.to_i
+        route_employee_action(action, employee)
+      end
     end
   end
 
@@ -47,7 +53,7 @@ class Router
     end
   end
 
-  def display_delivery_guy_action
+  def display_delivery_guy_tasks
     puts "What do you want to do ?"
     puts ""
     puts "1 - Take an order"
@@ -57,7 +63,7 @@ class Router
     puts "---------------------------"
   end
 
-  def route_manager_action(action)
+  def route_employee_action(action, employee)
     case action
       when 1 then @orders_controller.add
       when 2 then @orders_controller.list_my_orders(employee)
