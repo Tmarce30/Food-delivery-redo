@@ -18,7 +18,8 @@ class MealsController
     @meal_repository.add(meal)
   end
 
-  # def destroy
-
-  # end
+  def destroy
+    meal_id = @view.ask_user_for_input("meal id", true)
+    @meal_repository.remove(meal_id)
+  end
 end
