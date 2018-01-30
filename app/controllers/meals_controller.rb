@@ -17,4 +17,8 @@ class MealsController
     meal = Meal.new(name: name, price: price)
     @meal_repository.add(meal)
   end
+
+  # def destroy
+
+  # end
 end

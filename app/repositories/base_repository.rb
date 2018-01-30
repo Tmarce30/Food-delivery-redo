@@ -23,6 +23,11 @@ class BaseRepository
     @elements.find { |element| id == element.id }
   end
 
+  def remove(id)
+    @elements.delete_if { |element| element[:id] == id }
+    save_csv
+  end
+
   private
 
   def save_csv
