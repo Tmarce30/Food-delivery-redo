@@ -36,12 +36,13 @@ class Router
     puts ""
     puts "1 - Display the menu"
     puts "2 - Add a meal to the menu"
-    puts "3 - List all my customers"
-    puts "4 - Add a customer"
-    puts "5 - Take an order"
-    puts "6 - List orders"
-    puts "7 - Sign out"
-    puts "8 - Exit"
+    puts "3 - Remove a meal from the menu"
+    puts "4 - List all my customers"
+    puts "5 - Add a customer"
+    puts "6 - Take an order"
+    puts "7 - List orders"
+    puts "8 - Sign out"
+    puts "9 - Exit"
     puts "---------------------------"
   end
 
@@ -49,12 +50,13 @@ class Router
     case action
       when 1 then @meals_controller.list
       when 2 then @meals_controller.add
-      when 3 then @customers_controller.list
-      when 4 then @customers_controller.add
-      when 5 then @orders_controller.add
-      when 6 then @orders_controller.list_undelivered_orders
-      when 7 then @employee = nil
-      when 8 then stop
+      when 3 then @meals_controller.destroy
+      when 4 then @customers_controller.list
+      when 5 then @customers_controller.add
+      when 6 then @orders_controller.add
+      when 7 then @orders_controller.list_undelivered_orders
+      when 8 then @employee = nil
+      when 9 then stop
       else
         puts 'Enter a number between 1 and 6 !'
     end
