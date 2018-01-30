@@ -17,4 +17,9 @@ class CustomersController
     customer = Customer.new(name: name, address: address)
     @customer_repository.add(customer)
   end
+
+  def destroy
+    customer_id = @view.ask_user_for_input("customer id", true)
+    @customer_repository.remove(customer_id)
+  end
 end

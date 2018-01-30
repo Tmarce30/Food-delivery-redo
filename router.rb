@@ -39,10 +39,11 @@ class Router
     puts "3 - Remove a meal from the menu"
     puts "4 - List all my customers"
     puts "5 - Add a customer"
-    puts "6 - Take an order"
-    puts "7 - List orders"
-    puts "8 - Sign out"
-    puts "9 - Exit"
+    puts "6 - Delete a customer"
+    puts "7 - Take an order"
+    puts "8 - List orders"
+    puts "9 - Sign out"
+    puts "10 - Exit"
     puts "---------------------------"
   end
 
@@ -53,10 +54,11 @@ class Router
       when 3 then @meals_controller.destroy
       when 4 then @customers_controller.list
       when 5 then @customers_controller.add
-      when 6 then @orders_controller.add
-      when 7 then @orders_controller.list_undelivered_orders
-      when 8 then @employee = nil
-      when 9 then stop
+      when 6 then @customers_controller.destroy
+      when 7 then @orders_controller.add
+      when 8 then @orders_controller.list_undelivered_orders
+      when 9 then @employee = nil
+      when 10 then stop
       else
         puts 'Enter a number between 1 and 6 !'
     end
