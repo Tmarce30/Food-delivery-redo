@@ -36,11 +36,12 @@ class Router
     puts ""
     puts "1 - Display the menu"
     puts "2 - Add a meal to the menu"
-    puts "3 - List all your customers"
+    puts "3 - List all my customers"
     puts "4 - Add a customer"
-    puts "5 - List orders"
-    puts "6 - Sign out"
-    puts "7 - Exit"
+    puts "5 - Take an order"
+    puts "6 - List orders"
+    puts "7 - Sign out"
+    puts "8 - Exit"
     puts "---------------------------"
   end
 
@@ -50,9 +51,10 @@ class Router
       when 2 then @meals_controller.add
       when 3 then @customers_controller.list
       when 4 then @customers_controller.add
-      when 5 then @orders_controller.list_undelivered_orders
-      when 6 then @employee = nil
-      when 7 then stop
+      when 5 then @orders_controller.add
+      when 6 then @orders_controller.list_undelivered_orders
+      when 7 then @employee = nil
+      when 8 then stop
       else
         puts 'Enter a number between 1 and 6 !'
     end
@@ -61,21 +63,19 @@ class Router
   def display_delivery_guy_tasks
     puts "What do you want to do ?"
     puts ""
-    puts "1 - Take an order"
-    puts "2 - List my orders"
-    puts "3 - Mark order as delivered"
-    puts "4 - Sign out"
-    puts "5 - Exit"
+    puts "1 - List my orders"
+    puts "2 - Mark order as delivered"
+    puts "3 - Sign out"
+    puts "4 - Exit"
     puts "---------------------------"
   end
 
   def route_employee_action(action)
     case action
-      when 1 then @orders_controller.add
-      when 2 then @orders_controller.list_my_orders(@employee)
-      when 3 then @orders_controller.mark_as_delivered(@employee)
-      when 4 then @employee = nil
-      when 5 then stop
+      when 1 then @orders_controller.list_my_orders(@employee)
+      when 2 then @orders_controller.mark_as_delivered(@employee)
+      when 3 then @employee = nil
+      when 4 then stop
       else
         puts 'Enter a number between 1 and 4 !'
     end
